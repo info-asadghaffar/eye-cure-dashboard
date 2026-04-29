@@ -2,12 +2,12 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY prisma ./prisma
+COPY server/package*.json ./
+COPY server/prisma ./prisma
 
 RUN npm install
 
-COPY . .
+COPY server/ .
 
 # ⚠️ Set dummy DATABASE_URL just for build
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
