@@ -81,6 +81,24 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3001/api/:path*',
+      },
+      // Backward compatibility for /auth/* routes
+      {
+        source: '/auth/:path*',
+        destination: 'http://localhost:3001/auth/:path*',
+      },
+      // Proxy uploads to the backend
+      {
+        source: '/uploads/:path*',
+        destination: 'http://localhost:3001/uploads/:path*',
+      },
+    ];
+  },
 }
 
 export default nextConfig
