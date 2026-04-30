@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"cd server && npm run dev\"",
     "build": "npx prisma generate --schema=server/prisma/schema.prisma && next build && cd server && npm run build",
-    "server:start": "cd server && npm start",
-    "start": "npx prisma migrate deploy --schema=server/prisma/schema.prisma && concurrently --kill-others --prefix \"[{name}]\" --names \"frontend,backend\" --prefix-colors \"cyan,magenta\" \"next start\" \"npm run server:start\"",
+    "server:start": "node server/dist/index.js",
+    "start": "npx prisma migrate deploy --schema=server/prisma/schema.prisma && concurrently --kill-others --prefix \"[{name}]\" --names \"frontend,backend\" \"next start -H 0.0.0.0\" \"node server/dist/index.js\"",
     "postinstall": "npx prisma generate --schema=server/prisma/schema.prisma && (cd server && npm install --no-package-lock)"
   },
   "dependencies": {
