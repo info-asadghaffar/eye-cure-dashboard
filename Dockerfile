@@ -8,11 +8,12 @@ WORKDIR /app
 # Copy root package files
 COPY package*.json ./
 
-# Copy server package files to preserve structure for postinstall
+# Copy server package files and prisma schema for postinstall script
 COPY server/package*.json ./server/
+COPY server/prisma ./server/prisma/
 
 # Install ALL dependencies (including devDependencies for build)
-# Root postinstall will handle server/npm install
+# Root postinstall will handle prisma generate and server/npm install
 RUN npm install
 
 # Copy all source code
