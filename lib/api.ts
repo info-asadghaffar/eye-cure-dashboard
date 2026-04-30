@@ -14,7 +14,7 @@ import axios from 'axios'
  */
 const isDevelopment = process.env.NODE_ENV !== 'production';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || (isDevelopment
-  ? 'http://localhost:3001'
+  ? 'http://localhost:5000'
   : '/api');
 
 // Clean up trailing slashes and /api suffixes to establish a pure base URL

@@ -124,9 +124,9 @@ let env;
 try {
   env = validateEnv();
 } catch (e) { /* ignore */ }
-// Use BACKEND_PORT if set, otherwise default to 3001 in production or 5000 in dev
-// This prevents port conflicts with Next.js which uses the main PORT
-const PORT = process.env.BACKEND_PORT || (process.env.NODE_ENV === 'production' ? 3001 : (process.env.PORT || 5000));
+// Use BACKEND_PORT if set, otherwise default to 5000
+// This prevents port conflicts with Next.js which uses the main PORT (e.g., 3000, 10000)
+const PORT = process.env.BACKEND_PORT || 5000;
 
 // Trust proxy - Required for Railway, Vercel, and other cloud platforms
 // This allows Express to correctly identify client IPs behind reverse proxies
