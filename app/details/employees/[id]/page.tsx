@@ -236,7 +236,7 @@ export default function EmployeeDetailPage() {
                   <img
                     src={employee.profilePhotoUrl.startsWith('http') 
                       ? employee.profilePhotoUrl 
-                      : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}${employee.profilePhotoUrl.replace(/^\/api/, '')}`}
+                      : `${process.env.NEXT_PUBLIC_API_URL || '/api'}${employee.profilePhotoUrl.replace(/^\/api/, '')}`}
                     alt={employee.name || "Employee"}
                     className="h-full w-full object-cover"
                     onError={(e) => {
@@ -348,7 +348,7 @@ export default function EmployeeDetailPage() {
                       onClick={() => {
                         const docUrl = employee.cnicDocumentUrl!.startsWith('http')
                           ? employee.cnicDocumentUrl!
-                          : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}${employee.cnicDocumentUrl!.replace(/^\/api/, '')}`
+                          : `${process.env.NEXT_PUBLIC_API_URL || '/api'}${employee.cnicDocumentUrl!.replace(/^\/api/, '')}`
                         setSelectedDocument({
                           url: docUrl,
                           name: 'CNIC Document',
@@ -366,7 +366,7 @@ export default function EmployeeDetailPage() {
                       onClick={() => {
                         const docUrl = employee.cnicDocumentUrl!.startsWith('http')
                           ? employee.cnicDocumentUrl!
-                          : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}${employee.cnicDocumentUrl!.replace(/^\/api/, '')}`
+                          : `${process.env.NEXT_PUBLIC_API_URL || '/api'}${employee.cnicDocumentUrl!.replace(/^\/api/, '')}`
                         window.open(docUrl, '_blank')
                       }}
                     >

@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "prisma generate && next build",
-    "dev": "next dev",
-    "lint": "eslint .",
-    "start": "node start-production.js",
-    "server:dev": "cd server && npm run dev",
-    "server:start": "cd server && npm run start",
-    "postinstall": "prisma generate"
+    "dev": "concurrently \"next dev\" \"cd server && npm run dev\"",
+    "build": "npx prisma generate --schema=server/prisma/schema.prisma && next build && cd server && npm run build",
+    "server:start": "cd server && npm start",
+    "start": "npx prisma migrate deploy --schema=server/prisma/schema.prisma && concurrently --kill-others --prefix \"[{name}]\" --names \"frontend,backend\" --prefix-colors \"cyan,magenta\" \"next start\" \"npm run server:start\"",
+    "postinstall": "npx prisma generate --schema=server/prisma/schema.prisma && (cd server && npm install --no-package-lock)"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -83,7 +81,8 @@
     "node-cron": "^3.0.3",
     "pg": "^8.17.2",
     "winston": "^3.18.3",
-    "@prisma/client": "^7.4.2"
+    "@prisma/client": "^7.4.2",
+    "concurrently": "^8.2.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
@@ -101,7 +100,6 @@
     "tw-animate-css": "1.3.3",
     "typescript": "^5",
     "prisma": "^7.4.2",
-    "tsx": "^4.19.1",
-    "concurrently": "^8.2.2"
+    "tsx": "^4.19.1"
   }
 }

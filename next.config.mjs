@@ -1,3 +1,5 @@
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3001';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
@@ -85,17 +87,17 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3001/api/:path*',
+        destination: `${BACKEND_URL}/api/:path*`,
       },
       // Backward compatibility for /auth/* routes
       {
         source: '/auth/:path*',
-        destination: 'http://localhost:3001/auth/:path*',
+        destination: `${BACKEND_URL}/auth/:path*`,
       },
       // Proxy uploads to the backend
       {
         source: '/uploads/:path*',
-        destination: 'http://localhost:3001/uploads/:path*',
+        destination: `${BACKEND_URL}/uploads/:path*`,
       },
     ];
   },

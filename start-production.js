@@ -8,7 +8,7 @@ console.log('🚀 Starting EYER-REMS Production Environment...');
 
 // 1. Run Prisma migrations
 console.log('📡 Running database migrations...');
-const migrate = spawn('npx', ['prisma', 'migrate', 'deploy'], { stdio: 'inherit', shell: true });
+const migrate = spawn('npx', ['prisma', 'migrate', 'deploy', '--schema=server/prisma/schema.prisma'], { stdio: 'inherit', shell: true });
 
 migrate.on('close', (code) => {
   if (code !== 0) {
@@ -22,7 +22,7 @@ migrate.on('close', (code) => {
   const backend = spawn('npm', ['run', 'server:start'], { 
     stdio: 'inherit', 
     shell: true,
-    env: { ...process.env, PORT: '3001', NODE_ENV: 'production' }
+    env: { ...process.env, BACKEND_PORT: '3001', NODE_ENV: 'production' }
   });
 
   // 3. Start the Next.js Frontend on the Render-provided PORT

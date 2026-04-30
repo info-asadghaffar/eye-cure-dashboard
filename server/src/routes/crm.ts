@@ -228,6 +228,7 @@ router.post('/leads/:id/convert', authenticate, async (req: AuthRequest, res: Re
           clientCategory: 'regular',
           status: 'active',
           convertedFromLeadId: lead.id,
+          attachments: lead.attachments || {},
         },
       });
     });
